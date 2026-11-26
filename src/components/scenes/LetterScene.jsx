@@ -6,33 +6,29 @@ import PinkButton from "../ui/PinkButton";
 import StickerField from "../decor/StickerField";
 import { letterContent } from "../../data/content";
 
+// Real floral envelope artwork (wax seal + satin bow), background-matted
+// from the supplied envelop.png — see public/images/README.md.
 function Envelope({ opened, onOpen }) {
   return (
     <div
-      className="relative mx-auto"
-      style={{ width: 260, height: 170, perspective: 800 }}
+      className="relative mx-auto w-64 cursor-pointer sm:w-72"
+      style={{ perspective: 800 }}
       onClick={() => !opened && onOpen()}
       role="button"
       tabIndex={0}
       aria-label="Open the letter"
     >
-      {/* pocket */}
-      <div className="absolute inset-0 rounded-xl bg-blush-200 shadow-md" />
-      <div
-        className="absolute inset-x-0 bottom-0 h-full rounded-xl bg-blush-300"
-        style={{ clipPath: "polygon(0 35%, 50% 85%, 100% 35%, 100% 100%, 0 100%)" }}
-      />
-
-      {/* flap */}
-      <motion.div
-        className="absolute inset-x-0 top-0 h-[70%] origin-top rounded-t-xl bg-blush-400"
-        style={{ clipPath: "polygon(0 0, 100% 0, 50% 68%)", transformStyle: "preserve-3d" }}
-        animate={{ rotateX: opened ? -170 : 0 }}
+      <motion.img
+        src="/images/envelope.png"
+        alt="Sealed envelope"
+        className="w-full origin-top object-contain drop-shadow-xl"
+        style={{ transformStyle: "preserve-3d" }}
+        animate={opened ? { rotateX: -100, y: -20, opacity: 0 } : { rotateX: 0, y: 0, opacity: 1 }}
         transition={{ duration: 0.7, ease: [0.45, 0, 0.55, 1] }}
       />
 
       {!opened && (
-        <div className="absolute inset-0 flex cursor-pointer items-center justify-center">
+        <div className="pointer-events-none absolute inset-0 flex items-end justify-center pb-3">
           <span className="font-display rounded-full bg-white/80 px-3 py-1 text-xs font-semibold text-blush-700 shadow-sm">
             tap to open
           </span>

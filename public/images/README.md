@@ -10,6 +10,7 @@ coded placeholders in the meantime if a file isn't here yet.
 | `birthday-background-mobile.png` | full-screen background on narrow phones — a dedicated portrait crop, auto-generated from the file above |
 | `barbie-cake.png` | the cake, in both the candle scene and the cutting scene |
 | `bouquet.png` | the bouquet in the Gift Reveal scene |
+| `envelope.png` | the sealed envelope in the Letter scene |
 
 Notes:
 - `birthday-background.png`: shown with `background-size: contain` above
@@ -37,8 +38,11 @@ Notes:
 - `barbie-cake.png`: transparent background, ~900px wide. The candles are
   separate animated elements layered on top of this image, centered
   horizontally above it.
-- `bouquet.png`: shown framed like a small photo card (white border +
-  shadow), sized to ~160px wide so it doesn't crowd the heading above it.
-  That framing is meant for a regular photo; if you later swap in a
-  transparent cutout illustration instead, drop the border/shadow classes
-  in `src/components/decor/Bouquet.jsx` so it floats borderless.
+- `bouquet.png`: transparent cutout, floats borderless at ~160–192px wide.
+  If your source photo has an opaque background (or a design-tool
+  checkerboard baked in as real pixels instead of true alpha), it needs to
+  be matted to transparent first — see `src/components/decor/Bouquet.jsx`
+  for the drop-shadow treatment used here.
+- `envelope.png`: transparent cutout of a sealed envelope, ~256–288px wide.
+  The whole image tips back/fades on open (rather than only an inner flap)
+  since this is a single flat image, not separate flap/body layers.

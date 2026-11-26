@@ -242,10 +242,8 @@ export default function Bouquet({ className = "", sway = true }) {
       <ImageSlot
         src="/images/bouquet.png"
         alt="Your bouquet"
-        // Real photos (no transparency) are framed like a little photo card
-        // rather than floated borderless — the coded SVG fallback doesn't
-        // get this treatment since it's drawn as a proper cutout already.
-        className="w-40 rotate-[-2deg] rounded-xl border-[6px] border-white shadow-xl sm:w-48"
+        // Transparent cutout — floats borderless, same footprint as before.
+        className="w-40 object-contain drop-shadow-xl sm:w-48"
         fallback={<CodedBouquet sway={sway} />}
       />
     </div>
