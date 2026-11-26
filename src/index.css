@@ -122,16 +122,17 @@ body {
   text-shadow: 0 1px 8px rgba(255, 255, 255, 0.85);
 }
 
-/* Full-bleed background photo. The source art is a wide landscape "frame"
-   (decorations on the edges, blank centre) — on desktop/tablet that fits
-   nicely with `contain`. On narrow portrait phones `contain` leaves big
-   blank bars above/below, so below 640px we swap to a dedicated portrait
-   crop (full height, no letterboxing, no stretching) and use `cover`. */
+/* Full-bleed background photo. The source art's aspect (~1.78) closely
+   matches a typical desktop/laptop viewport, so `cover` fills edge-to-edge
+   with no side gaps while still showing virtually the whole frame (only
+   trims a sliver on very wide/narrow windows, never stretches). On narrow
+   portrait phones below 640px we swap to a dedicated portrait crop (full
+   height, no letterboxing, no stretching) and use `cover` there too. */
 .app-bg {
   background-image:
     url("/images/birthday-background.png"),
     linear-gradient(180deg, var(--color-blush-50), var(--color-cream-50));
-  background-size: contain;
+  background-size: cover;
 }
 @media (max-width: 640px) {
   .app-bg {
